@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
 <head>
+  <style>
+    #color {
+      position: relative;
+      top: -150px;
+      left: 275px;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
     
 </head>
 <body>
@@ -14,6 +23,7 @@
   <input type="submit" value="Submit" onclick="displayColor()">
   
   <p id="result">The Barycentric Maxwell hues are</p>
+  <p id="color"></p>
   
   <script>
     function displayColor() {
@@ -26,14 +36,19 @@
       } else {
         let total = green + red + blue;
         let lastNum = Math.max(green, red, blue);
+        let greenCol = green * 255;
+        let redCol = red * 255;
+        let blueCol = blue * 255;
         green = green / total;
         green = green.toFixed(2);
         blue = blue / total;
         blue = blue.toFixed(2);
         red = red / total;
         red = red.toFixed(2);
+        let string = "rgb(" + redCol + "," + greenCol + "," + blueCol + ")";
         
         document.getElementById("result").innerHTML = "The Barycentric Maxwell hues are (" + red + ", " + green + ", " + blue + ", " + lastNum + ")";
+        document.getElementById("color").style.background = string;
       }
     }
     

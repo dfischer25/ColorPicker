@@ -1,1 +1,45 @@
-<h1>Hello world</h1>
+<!doctype html>
+<html>
+<head>
+    
+</head>
+<body>
+  <h3>Enter RGB values between 0.0 and 1.0 below</h3>
+  <label for="red">Red:</label>
+  <input type="text" id="red" name="red"><br>
+  <label for="green">Green:</label>
+  <input type="text" id="green" name="green"><br>
+  <label for="blue">Blue:</label>
+  <input type="text" id="blue" name="blue"><br>
+  <input type="submit" value="Submit" onclick="displayColor()">
+  
+  <p id="result">The Barycentric Maxwell hues are</p>
+  
+  <script>
+    function displayColor() {
+      let green = parseFloat(document.getElementById("green").value);
+      let red = parseFloat(document.getElementById("red").value);
+      let blue = parseFloat(document.getElementById("blue").value);
+      if(isNaN(red) || isNaN(blue) || isNaN(green) || !validateNumber(red) ||   !validateNumber(blue) || !validateNumber(green)) {
+        document.getElementById("result").innerHTML = "Please enter a number between 0.0 and 1.0";
+        return;
+      } else {
+        let total = green + red + blue;
+        let lastNum = Math.max(green, red, blue);
+        green = green / total;
+        green = green.toFixed(2);
+        blue = blue / total;
+        blue = blue.toFixed(2);
+        red = red / total;
+        red = red.toFixed(2);
+        
+        document.getElementById("result").innerHTML = "The Barycentric Maxwell hues are (" + red + ", " + green + ", " + blue + ", " + lastNum + ")";
+      }
+    }
+    
+    function validateNumber(num) {
+      return num >= 0 && num <= 1;
+    }
+  </script>
+</body>
+</html>
